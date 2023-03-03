@@ -4,7 +4,27 @@
   <link rel="stylesheet" href="/frostbyte.css">
  </head>
  <body>
-  <script src="/frostbyte.js"></script>
+  
+<script>
+//
+// SLIDESHOW SCRIPTING
+//
+let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}
+  slides[slideIndex-1].style.display = "block";
+  setTimeout(showSlides, 2000); // Change image every 2 seconds
+}
+</script>
+
   <p><img src="FBC-Website-325x75.jpg" alt="Frostbyte Conslting"></img></p>
   <hr noshade></hr>
   <p>The website is being rebuilt -- thanks for your patience while this happens.</p>
@@ -16,25 +36,25 @@
   <div class="mySlides fade">
     <div class="numbertext">1 / 4</div>
     <img src="Banner-1-SystemsDesignImplementation.jpg" style="width:100%">
-    <div class="text">Caption Text</div>
+    <div class="text">Systems Design and Implementation</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">2 / 4</div>
     <img src="Banner-2-BackupsDisasterRecovery.jpg" style="width:100%">
-    <div class="text">Caption Two</div>
+    <div class="text">Backups and Disaster Recovery</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">3 / 4</div>
     <img src="Banner-3-PCI-DSS-Compliance.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
+    <div class="text">PCI DSS Compliance</div>
   </div>
 
   <div class="mySlides fade">
     <div class="numbertext">4 / 4</div>
     <img src="Banner-4-IT-Strategy.jpg" style="width:100%">
-    <div class="text">Caption Three</div>
+    <div class="text">IT Strategy</div>
   </div>
 
   <!-- Next and previous buttons -->
