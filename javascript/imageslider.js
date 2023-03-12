@@ -1,26 +1,31 @@
-let slideIndex = 0;
-showSlides(slideIndex);
+const images = document.querySelectorAll(".slider img");
+const indicators = document.querySelectorAll(".slider-indicator");
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+let currentImg = 0;
+
+function showImage(index) {
+  images[currentImg].classList.remove("active");
+  indicators[currentImg].classList.remove("active");
+  images[index].classList.add("active");
+  indicators[index].classList.add("active");
+  currentImg = index;
 }
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides(slideIndex = n);
+function startSlider() {
+  setInterval(() => {
+    let index = currentImg + 1;
+    if (index >= images.length) {
+      index = 0;
+    }
+    showImage(index);
+  }, 5000);
 }
 
-function showSlides() {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots   = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  slideIndex++;
-  if (slideIndex > slides.length) {slideIndex = 1}
-  slides[slideIndex-1].style.display = "block";
-  dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 5000); // Change image every 5 seconds
-}
+indicators.forEach((indicator, index) => {
+  indicator.addEventListener("click", () => {
+    showImage(index);
+  });
+});
+
+showImage(0);
+startSlider();
