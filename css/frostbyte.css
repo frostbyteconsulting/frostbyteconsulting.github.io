@@ -1,10 +1,10 @@
-.slider {
+.imageslider {
   position: relative;
   width: 1200px;
   height: 400px;
 }
 
-.slider img {
+.imageslider img {
   position: absolute;
   top: 0;
   left: 0;
@@ -14,6 +14,26 @@
   transition: opacity 1s ease-in-out;
 }
 
-.slider img.active {
+.imageslider img.active {
   opacity: 1;
+}
+
+.imageslider-indicators {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.imageslider-indicators span {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #ccc;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.imageslider-indicators span.active {
+  background-color: #555;
 }
