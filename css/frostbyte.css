@@ -1,5 +1,7 @@
 .slider {
   position: relative;
+  width: 1200px;
+  height: 400px;
 }
 
 .slider img {
