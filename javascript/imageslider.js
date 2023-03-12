@@ -9,6 +9,14 @@ function showImage(index) {
   currentImg = index;
 }
 
+function nextImage() {
+  let index = currentImg + 1;
+  if (index >= images.length) {
+    index = 0;
+  }
+  showImage(index);
+}
+
 prevBtn.addEventListener("click", () => {
   let index = currentImg - 1;
   if (index < 0) {
@@ -18,11 +26,11 @@ prevBtn.addEventListener("click", () => {
 });
 
 nextBtn.addEventListener("click", () => {
-  let index = currentImg + 1;
-  if (index >= images.length) {
-    index = 0;
-  }
-  showImage(index);
+  nextImage();
 });
+
+setInterval(() => {
+  nextImage();
+}, 5000);
 
 showImage(0);
