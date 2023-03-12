@@ -1,4 +1,4 @@
-let slideIndex = 1;
+let slideIndex = 0;
 showSlides(slideIndex);
 
 // Next/previous controls
@@ -18,9 +18,7 @@ function showSlides() {
     slides[i].style.display = "none";
   }
   slideIndex++;
-  if (slideIndex > slides.length) {
-    slideIndex = 1;
-  }
+  if (slideIndex > slides.length) {slideIndex = 1}
   slides[slideIndex-1].style.display = "block";
   dots[slideIndex-1].className += " active";
   setTimeout(showSlides, 5000); // Change image every 5 seconds
