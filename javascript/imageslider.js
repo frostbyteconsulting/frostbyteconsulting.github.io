@@ -1,6 +1,6 @@
-const images = document.querySelectorAll(".slider img");
-const prevBtn = document.getElementById("prev");
-const nextBtn = document.getElementById("next");
+const images = document.querySelectorAll(".imageslider-images img");
+const indicators = document.querySelectorAll(".imageslider-indicators span");
+
 let currentImg = 0;
 
 function showImage(index) {
@@ -15,6 +15,16 @@ function nextImage() {
     index = 0;
   }
   showImage(index);
+}
+
+function updateIndicators() {
+  indicators.forEach((indicator, index) => {
+    if (index === currentImg) {
+      indicator.classList.add("active");
+    } else {
+      indicator.classList.remove("active");
+    }
+  });
 }
 
 prevBtn.addEventListener("click", () => {
@@ -33,4 +43,5 @@ setInterval(() => {
   nextImage();
 }, 5000);
 
+updateIndicators();
 showImage(0);
