@@ -1,12 +1,12 @@
 const images = document.querySelectorAll(".slider img");
-const dots = document.querySelectorAll(".dot");
+const indicators = document.querySelectorAll(".slider-indicator");
 let currentImg = 0;
 
 function showImage(index) {
   images[currentImg].classList.remove("active");
   images[index].classList.add("active");
-  dots[currentImg].classList.remove("active");
-  dots[index].classList.add("active");
+  indicators[currentImg].classList.remove("active");
+  indicators[index].classList.add("active");
   currentImg = index;
 }
 
@@ -18,13 +18,13 @@ function nextImage() {
   showImage(index);
 }
 
-let slideInterval = setInterval(nextImage, 5000);
+let intervalId = setInterval(nextImage, 5000);
 
-for (let i = 0; i < dots.length; i++) {
-  dots[i].addEventListener("click", function() {
+for (let i = 0; i < indicators.length; i++) {
+  indicators[i].addEventListener("click", () => {
+    clearInterval(intervalId);
     showImage(i);
-    clearInterval(slideInterval);
-    slideInterval = setInterval(nextImage, 5000);
+    intervalId = setInterval(nextImage, 5000);
   });
 }
 
