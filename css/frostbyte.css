@@ -1,45 +1,51 @@
 .slider-container {
   position: relative;
-  height: 400px;
   width: 1200px;
+  height: 400px;
+  margin: 0 auto;
 }
 
 .slider {
   position: absolute;
-  height: 400px;
-  width: 1200px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .slider img {
-  height: 400px;
-  width: 1200px;
-  position: absolute;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+  display: none;
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .slider img.active {
-  opacity: 1;
+  display: block;
 }
 
-.indicators {
+.dots-container {
   position: absolute;
-  bottom: 20px;
-  width: 100%;
-  text-align: center;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.indicators button {
-  display: inline-block;
-  height: 10px;
+.dot {
   width: 10px;
+  height: 10px;
   border-radius: 50%;
-  border: none;
-  background-color: #ccc;
+  background-color: gray;
   margin: 0 5px;
   cursor: pointer;
 }
 
-.indicators button.active {
-  background-color: #333;
+.dot.active {
+  background-color: black;
 }
