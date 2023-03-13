@@ -1,30 +1,45 @@
 .slider-container {
   position: relative;
-  max-width: 1200px;
+  width: 1200px;
+  height: 400px;
   margin: 0 auto;
 }
 
-.slider-img {
+.slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slider img {
   display: none;
   width: 100%;
-  height: 400px;
+  height: 100%;
 }
 
-.slider-circles {
+.slider img.active {
+  display: block;
+}
+
+.slider-nav {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  justify-content: center;
-  margin-top: 20px;
 }
 
-.slider-circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: grey;
+.slider-indicator {
+  width: 10px;
+  height: 10px;
   margin: 0 10px;
+  border-radius: 50%;
+  background-color: #ddd;
   cursor: pointer;
 }
 
-.slider-circle.active {
-  background-color: white;
+.slider-indicator.active {
+  background-color: #333;
 }
