@@ -1,43 +1,30 @@
-const slides = document.querySelectorAll('.slides img');
-const circles = document.querySelector('.circles');
+let slideIndex = 1;
+showSlides(slideIndex);
 
-let counter = 0;
-let interval;
-
-// create circles
-for (let i = 0; i < slides.length; i++) {
-  const circle = document.createElement('button');
-  circle.addEventListener('click', () => {
-    clearInterval(interval);
-    counter = i;
-    showSlide(counter);
-    interval = setInterval(() => {
-      counter++;
-      if (counter === slides.length) {
-        counter = 0;
-      }
-      showSlide(counter);
-    }, 5000);
-  });
-  circles.appendChild(circle);
+function plusSlides(n) {
+  showSlides(slideIndex += n);
 }
 
-const circleButtons = document.querySelectorAll('.circles button');
-
-function showSlide(index) {
-  for (let i = 0; i < slides.length; i++) {
-    slides[i].classList.remove('active');
-    circleButtons[i].classList.remove('active');
-  }
-  slides[index].classList.add('active');
-  circleButtons[index].classList.add('active');
+function currentSlide(n) {
+  showSlides(slideIndex = n);
 }
 
-showSlide(counter);
-interval = setInterval(() => {
-  counter++;
-  if (counter === slides.length) {
-    counter = 0;
+function showSlides(n) {
+  let i;
+  let slides = document.getElementsByClassName("slider-img");
+  let circles = document.getElementsByClassName("slider-circle");
+  if (n > slides.length) { slideIndex = 1 }
+  if (n < 1) { slideIndex = slides.length }
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";
   }
-  showSlide(counter);
+  for (i = 0; i < circles.length; i++) {
+    circles[i].classList.remove("active");
+  }
+  slides[slideIndex - 1].style.display = "block";
+  circles[slideIndex - 1].classList.add("active");
+}
+
+setInterval(() => {
+  plusSlides(1);
 }, 5000);
