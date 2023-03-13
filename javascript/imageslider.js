@@ -1,31 +1,43 @@
-const images = document.querySelectorAll(".slider img");
-const indicators = document.querySelectorAll(".slider-indicator");
-let currentImg = 0;
+const slides = document.querySelectorAll('.slides img');
+const circles = document.querySelector('.circles');
 
-function showImage(index) {
-  images[currentImg].classList.remove("active");
-  images[index].classList.add("active");
-  indicators[currentImg].classList.remove("active");
-  indicators[index].classList.add("active");
-  currentImg = index;
-}
+let counter = 0;
+let interval;
 
-function nextImage() {
-  let index = currentImg + 1;
-  if (index >= images.length) {
-    index = 0;
-  }
-  showImage(index);
-}
-
-let intervalId = setInterval(nextImage, 5000);
-
-for (let i = 0; i < indicators.length; i++) {
-  indicators[i].addEventListener("click", () => {
-    clearInterval(intervalId);
-    showImage(i);
-    intervalId = setInterval(nextImage, 5000);
+// create circles
+for (let i = 0; i < slides.length; i++) {
+  const circle = document.createElement('button');
+  circle.addEventListener('click', () => {
+    clearInterval(interval);
+    counter = i;
+    showSlide(counter);
+    interval = setInterval(() => {
+      counter++;
+      if (counter === slides.length) {
+        counter = 0;
+      }
+      showSlide(counter);
+    }, 5000);
   });
+  circles.appendChild(circle);
 }
 
-showImage(0);
+const circleButtons = document.querySelectorAll('.circles button');
+
+function showSlide(index) {
+  for (let i = 0; i < slides.length; i++) {
+    slides[i].classList.remove('active');
+    circleButtons[i].classList.remove('active');
+  }
+  slides[index].classList.add('active');
+  circleButtons[index].classList.add('active');
+}
+
+showSlide(counter);
+interval = setInterval(() => {
+  counter++;
+  if (counter === slides.length) {
+    counter = 0;
+  }
+  showSlide(counter);
+}, 5000);
