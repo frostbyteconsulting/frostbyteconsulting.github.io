@@ -1,30 +1,31 @@
-let slideIndex = 1;
-showSlides(slideIndex);
+const images = document.querySelectorAll(".slider img");
+const indicators = document.querySelectorAll(".slider-indicator");
+let currentImg = 0;
 
-function plusSlides(n) {
-  showSlides(slideIndex += n);
+function showImage(index) {
+  images[currentImg].classList.remove("active");
+  images[index].classList.add("active");
+  indicators[currentImg].classList.remove("active");
+  indicators[index].classList.add("active");
+  currentImg = index;
 }
 
-function currentSlide(n) {
-  showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("slider-img");
-  let circles = document.getElementsByClassName("slider-circle");
-  if (n > slides.length) { slideIndex = 1 }
-  if (n < 1) { slideIndex = slides.length }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
+function nextImage() {
+  let index = currentImg + 1;
+  if (index >= images.length) {
+    index = 0;
   }
-  for (i = 0; i < circles.length; i++) {
-    circles[i].classList.remove("active");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  circles[slideIndex - 1].classList.add("active");
+  showImage(index);
 }
 
-setInterval(() => {
-  plusSlides(1);
-}, 5000);
+let intervalId = setInterval(nextImage, 5000);
+
+for (let i = 0; i < indicators.length; i++) {
+  indicators[i].addEventListener("click", () => {
+    clearInterval(intervalId);
+    showImage(i);
+    intervalId = setInterval(nextImage, 5000);
+  });
+}
+
+showImage(0);
